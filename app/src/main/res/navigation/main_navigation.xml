@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/watchlistFragment"
+        android:name="com.example.ministockbitapp.view.WatchlistFragment"
+        android:label="fragment_watchlist"
+        tools:layout="@layout/fragment_watchlist" />
+
+    <fragment
+        android:id="@+id/streamFragment"
+        android:name="com.example.ministockbitapp.view.StreamFragment"
+        android:label="fragment_stream"
+        tools:layout="@layout/fragment_stream" />
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.ministockbitapp.view.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.ministockbitapp.view.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
+
+    <fragment
+        android:id="@+id/portfolioFragment"
+        android:name="com.example.ministockbitapp.view.PortfolioFragment"
+        android:label="fragment_portfolio"
+        tools:layout="@layout/fragment_portfolio" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.ministockbitapp.view.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+    </fragment>
+</navigation>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/watchlistFragment"
+        android:icon="@drawable/ic_baseline_star_outline_24"
+        android:title="Watchlist" />
+
+    <item
+        android:id="@+id/streamFragment"
+        android:icon="@drawable/ic_baseline_article_24"
+        android:title="Stream" />
+
+
+    <item
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Search" />
+
+    <item
+        android:id="@+id/chatFragment"
+        android:icon="@drawable/ic_outline_chat_bubble_outline_24"
+        android:title="Chat" />
+
+    <item
+        android:id="@+id/portfolioFragment"
+        android:icon="@drawable/ic_baseline_pie_chart_24"
+        android:title="Portfolio" />
+</menu>

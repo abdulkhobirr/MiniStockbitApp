@@ -1,0 +1,2 @@
+rootProject.name = "Mini Stockbit App"
+include ':app'
