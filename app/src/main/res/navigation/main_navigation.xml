@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/watchlistFragment"
-        android:name="com.example.ministockbitapp.view.WatchlistFragment"
+        android:name="com.example.ministockbitapp.view.watchlist.WatchlistFragment"
         android:label="fragment_watchlist"
         tools:layout="@layout/fragment_watchlist" />
 

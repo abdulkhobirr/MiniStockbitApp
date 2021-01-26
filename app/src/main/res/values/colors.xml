@@ -10,4 +10,5 @@
     <color name="boulder">#DCDCDB</color>
     <color name="green">#01ab6c</color>
     <color name="transparent">#00000000</color>
+    <color name="grey">#b5b5b5</color>
 </resources>

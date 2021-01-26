@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvCryptoName"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        style="@style/StockbitTextView.Black.Bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="AALI"/>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvCryptoFullName"
+        style="@style/StockbitTextView"
+        app:layout_constraintTop_toBottomOf="@id/tvCryptoName"
+        app:layout_constraintStart_toStartOf="@id/tvCryptoName"
+        tools:text="Astra Agro Lestari Tbk." />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvCryptoPrice"
+        android:layout_marginEnd="15dp"
+        style="@style/StockbitTextView.Black.Bold"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvCryptoName"
+        app:layout_constraintTop_toTopOf="@id/tvCryptoName"
+        tools:text="9000" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvPriceChange"
+        style="@style/StockbitTextView"
+        app:layout_constraintTop_toBottomOf="@id/tvCryptoPrice"
+        app:layout_constraintEnd_toEndOf="@id/tvCryptoPrice"
+        app:layout_constraintStart_toEndOf="@id/tvCryptoFullName"
+        app:layout_constraintHorizontal_bias="1"
+        tools:text="+200(+2.26%)" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/boulder"
+        app:layout_constraintTop_toBottomOf="@id/tvCryptoFullName"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

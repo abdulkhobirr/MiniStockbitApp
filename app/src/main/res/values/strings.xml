@@ -12,4 +12,11 @@
     <string name="text_login">Login</string>
     <string name="text_masuk_dengan_fingerprint">Masuk dengan Fingerprint</string>
     <string name="title_support">Support</string>
+    <string name="text_belum_punya_akun">Belum Punya Akun?</string>
+    <string name="text_daftar_sekarang">Daftar Sekarang</string>
+    <string name="title_empty">No Data</string>
+    <string name="message_empty">No Data to be Shown</string>
+    <string name="label_error">Error Occurred</string>
+    <string name="error_message">Unknown Error Occurred</string>
+    <string name="action_retry">Retry</string>
 </resources>
