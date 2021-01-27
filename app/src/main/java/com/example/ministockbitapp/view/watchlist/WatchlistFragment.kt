@@ -7,24 +7,24 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ministockbitapp.R
-import com.example.ministockbitapp.utils.showDefaultState
-import com.example.ministockbitapp.utils.showEmptyState
-import com.example.ministockbitapp.utils.showLoadingState
+import com.example.ministockbitapp.utils.*
+import com.example.ministockbitapp.utils.pref.PrefManager
 import com.example.ministockbitapp.utils.viewmodel.Result
-import com.example.ministockbitapp.utils.visible
 import com.example.ministockbitapp.viewmodel.CryptoViewModel
+import com.example.ministockbitapp.viewmodel.LoginViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_watchlist.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WatchlistFragment : Fragment() {
 
     private val viewModel: CryptoViewModel by viewModel()
+    private val loginViewModel: LoginViewModel by viewModel()
     private lateinit var cryptoAdapter: WatchlistAdapter
 
     override fun onCreateView(
@@ -41,6 +41,7 @@ class WatchlistFragment : Fragment() {
         viewModel.getCrypto()
 
         setupToolbar()
+        setupNav()
         setupActions()
         setupRV()
         setupObservables()
@@ -53,16 +54,20 @@ class WatchlistFragment : Fragment() {
         }
     }
 
-    override fun onAttach(context: Context) {
+    private fun setupNav(){
         val bottomNavigation = activity?.window?.findViewById<BottomNavigationView>(R.id.bottomNav)
         bottomNavigation?.visible()
-        super.onAttach(context)
+    }
+
+    override fun onResume() {
+        val bottomNavigation = activity?.window?.findViewById<BottomNavigationView>(R.id.bottomNav)
+        bottomNavigation?.visible()
+        super.onResume()
     }
 
     private fun setupToolbar(){
         requireActivity().apply {
             setActionBar(toolbarWatchlist)
-            actionBar?.setLogo(R.drawable.stockbit)
             actionBar?.setDisplayShowTitleEnabled(false)
         }
         toolbarWatchlist.apply {
@@ -74,7 +79,15 @@ class WatchlistFragment : Fragment() {
                     }
                     R.id.action_logout -> {
                         Toast.makeText(requireActivity(), "Logout", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.loginFragment)
+                        context.showWhiteAlertDialog(
+                                title = "Logout",
+                                message = "Anda yakin ingin logout ?",
+                                negativeButton = Pair(getString(android.R.string.cancel), {}),
+                                positiveButton = Pair(getString(android.R.string.ok), {
+                                    loginViewModel.logout()
+                                    findNavController().navigate(R.id.loginFragment)
+                                })
+                        )
                     }
                 }
                 true
@@ -130,7 +143,6 @@ class WatchlistFragment : Fragment() {
 
                     Log.d("DATAAA", it.data.data.toString())
 //                    Log.d("DataCrypto", listCrypto.toString())
-
                     if (viewModel.pageCount == 0){
                         cryptoAdapter.setCryptoData(it.data.data)
                     } else {

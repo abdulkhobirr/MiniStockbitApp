@@ -118,6 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tvAtau"
+            android:text="email.test@mail.com"
             android:hint="@string/hint_username_atau_email" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,7 +135,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/edtUsername"
             android:hint="@string/hint_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:text="@string/sample_password"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton

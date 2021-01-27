@@ -2,10 +2,7 @@ package com.example.ministockbitapp.utils
 
 import android.app.Application
 import android.content.Context
-import com.example.ministockbitapp.di.apiModule
-import com.example.ministockbitapp.di.cryptoModule
-import com.example.ministockbitapp.di.rxModule
-import com.example.ministockbitapp.di.utilityModule
+import com.example.ministockbitapp.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
@@ -32,7 +29,8 @@ class BaseApplication : Application() {
             cryptoModule,
             apiModule,
             rxModule,
-            utilityModule
+            utilityModule,
+            preferenceModule
         )
     }
 }

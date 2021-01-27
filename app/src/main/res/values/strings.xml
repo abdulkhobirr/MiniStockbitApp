@@ -20,4 +20,7 @@
     <string name="error_message">Unknown Error Occurred</string>
     <string name="action_retry">Retry</string>
     <string name="label_no_data">- No Data -</string>
+    <string name="message_logging_in">Logging In</string>
+    <string name="message_success">Success</string>
+    <string name="sample_password">12341234</string>
 </resources>

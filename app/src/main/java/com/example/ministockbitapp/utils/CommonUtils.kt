@@ -1,10 +1,15 @@
 package com.example.ministockbitapp.utils
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.graphics.drawable.Drawable
+import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.example.ministockbitapp.R
 import com.kennyc.view.MultiStateView
 
@@ -77,5 +82,58 @@ fun trimTrailingZero(value: String?): String? {
 
     } else {
         value
+    }
+}
+
+fun Context.showWhiteAlertDialog(
+        title: String? = null,
+        message: String? = null,
+        positiveButton: Pair<String, () -> Unit>? = null,
+        negativeButton: Pair<String, () -> Unit>? = null
+) {
+
+    val builder = AlertDialog.Builder(
+            ContextThemeWrapper(
+                    this,
+                    android.R.style.Theme_Material_Light_Dialog_Alert
+            )
+    )
+
+    builder.apply {
+        if (title != null) setTitle(title)
+
+        if (message != null) setMessage(message)
+
+        if (negativeButton != null) {
+            setNegativeButton(
+                    negativeButton.first
+            ) { _, _ ->
+                negativeButton.second.invoke()
+            }
+        }
+
+        if (positiveButton != null) {
+            setPositiveButton(
+                    positiveButton.first
+            ) { _, _ ->
+                positiveButton.second.invoke()
+            }
+        }
+        setCancelable(false)
+    }
+
+    val dialog = builder.create()
+    dialog.show()
+
+    if (negativeButton != null) {
+        val buttonNegative = dialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+        buttonNegative.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent))
+        buttonNegative.setTextColor(ContextCompat.getColor(this, R.color.grey))
+    }
+
+    if (positiveButton != null) {
+        val buttonPositive = dialog.getButton(DialogInterface.BUTTON_POSITIVE)
+        buttonPositive.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent))
+        buttonPositive.setTextColor(ContextCompat.getColor(this, R.color.green))
     }
 }

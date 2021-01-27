@@ -16,9 +16,20 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvCryptoFullName"
         style="@style/StockbitTextView"
+        android:layout_width="0dp"
         app:layout_constraintTop_toBottomOf="@id/tvCryptoName"
         app:layout_constraintStart_toStartOf="@id/tvCryptoName"
+        app:layout_constraintEnd_toStartOf="@id/glItemCrypto"
+        app:layout_constraintHorizontal_bias="0"
+        android:ellipsize="end"
         tools:text="Astra Agro Lestari Tbk." />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glItemCrypto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvCryptoPrice"
@@ -32,11 +43,13 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvPriceChange"
         style="@style/StockbitTextView"
+        android:layout_width="0dp"
         app:layout_constraintTop_toBottomOf="@id/tvCryptoPrice"
         app:layout_constraintEnd_toEndOf="@id/tvCryptoPrice"
-        app:layout_constraintStart_toEndOf="@id/tvCryptoFullName"
+        app:layout_constraintStart_toEndOf="@id/glItemCrypto"
         app:layout_constraintHorizontal_bias="1"
-        tools:text="+200(+2.26%)" />
+        tools:text="+200(+2.26%)"
+        android:textAlignment="viewEnd"/>
 
     <View
         android:layout_width="match_parent"
