@@ -15,7 +15,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAllWatchlist"
-        style="@style/StockbitTextView.Black.Bold"
+        style="@style/StockbitButton.NoCaps.BlackText"
         app:icon="@drawable/ic_baseline_keyboard_arrow_down_24"
         app:iconGravity="textEnd"
         app:iconTint="@color/black"
@@ -28,8 +28,7 @@
         android:textAllCaps="false"/>
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAddSymbol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/StockbitButton.NoCaps"
         android:layout_weight="1"
         app:icon="@drawable/ic_baseline_add_circle_outline_24"
         app:iconGravity="start"
@@ -38,8 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbarWatchlist"
         android:text="Add Symbol"
-        android:textColor="@color/grey"
-        android:textAllCaps="false"/>
+        android:textColor="@color/grey" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -56,7 +54,8 @@
         app:msv_emptyView="@layout/default_empty_layout"
         app:msv_errorView="@layout/default_error_layout"
         app:msv_loadingView="@layout/default_loading_layout">
-        <ScrollView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <androidx.recyclerview.widget.RecyclerView
@@ -64,6 +63,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 tools:listitem="@layout/item_crypto" />
-        </ScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </com.kennyc.view.MultiStateView>
 </androidx.constraintlayout.widget.ConstraintLayout>

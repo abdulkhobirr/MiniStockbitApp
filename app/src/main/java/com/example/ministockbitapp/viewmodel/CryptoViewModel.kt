@@ -2,6 +2,8 @@ package com.example.ministockbitapp.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.ministockbitapp.data.crypto.CryptoRepository
+import com.example.ministockbitapp.data.crypto.model.CryptoResponseItem
 import com.example.ministockbitapp.model.crypto.CryptoUseCase
 import com.example.ministockbitapp.model.crypto.model.CryptoResponse
 import com.example.ministockbitapp.utils.viewmodel.Result
@@ -12,18 +14,19 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class CryptoViewModel(
-    private val useCase: CryptoUseCase,
+    private val repository: CryptoRepository,
     private val disposable: CompositeDisposable
 ): ViewModel() {
-    val listCrypto = MutableLiveData<Result<CryptoResponse>>()
+    val listCrypto = MutableLiveData<Result<CryptoResponseItem>>()
+    var pageCount: Int = 0
 
     init {
         listCrypto.value = Result.default()
     }
 
-    fun getCrypto(page: Int){
+    fun getCrypto(){
         listCrypto.value = Result.loading()
-        useCase.getCrypto(page)
+        repository.getCrypto(pageCount)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -32,5 +35,9 @@ class CryptoViewModel(
                 genericErrorHandler(it, listCrypto)
             })
             .addTo(disposable)
+    }
+
+    fun incrementPageCount(){
+        pageCount++
     }
 }

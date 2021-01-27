@@ -14,8 +14,6 @@ import com.example.ministockbitapp.R
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment() {
-    val mainNavController: NavController? by lazy { activity?.findNavController(R.id.main_navigation) }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +44,7 @@ class LoginFragment : Fragment() {
         }
 
         btnLoginFingerprint.setOnClickListener {
-            Toast.makeText(requireActivity(), "Facebook Sign In", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity(), "Fingerprint Sign In", Toast.LENGTH_SHORT).show()
         }
 
         btnDaftarSekarang.setOnClickListener {

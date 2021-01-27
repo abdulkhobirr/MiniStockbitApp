@@ -5,8 +5,6 @@ import com.example.ministockbitapp.data.crypto.CryptoDataStore
 import com.example.ministockbitapp.data.crypto.CryptoRepository
 import com.example.ministockbitapp.data.crypto.remote.CryptoApi
 import com.example.ministockbitapp.data.crypto.remote.CryptoApiClient
-import com.example.ministockbitapp.model.crypto.CryptoInteractor
-import com.example.ministockbitapp.model.crypto.CryptoUseCase
 import com.example.ministockbitapp.utils.data.ApiService
 import com.example.ministockbitapp.viewmodel.CryptoViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -26,8 +24,6 @@ val cryptoModule = module {
     single { CryptoApi(get()) }
 
     single<CryptoRepository> { CryptoDataStore(get()) }
-
-    single<CryptoUseCase> { CryptoInteractor(get()) }
 
     viewModel { CryptoViewModel(get(), get()) }
 }

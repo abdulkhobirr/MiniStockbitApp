@@ -1,14 +1,17 @@
 package com.example.ministockbitapp.view.watchlist
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.ministockbitapp.R
-import com.example.ministockbitapp.data.crypto.model.Data
 import com.example.ministockbitapp.utils.showDefaultState
 import com.example.ministockbitapp.utils.showEmptyState
 import com.example.ministockbitapp.utils.showLoadingState
@@ -23,7 +26,6 @@ class WatchlistFragment : Fragment() {
 
     private val viewModel: CryptoViewModel by viewModel()
     private lateinit var cryptoAdapter: WatchlistAdapter
-    private var listCrypto = listOf<Data>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,20 +38,25 @@ class WatchlistFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getCrypto(0)
-
-        setupNav()
+        viewModel.getCrypto()
 
         setupToolbar()
-
+        setupActions()
         setupRV()
-
         setupObservables()
     }
 
-    private fun setupNav(){
+    private fun setupActions(){
+        swipeRefresh.setOnRefreshListener {
+            viewModel.getCrypto()
+            swipeRefresh.isRefreshing = false
+        }
+    }
+
+    override fun onAttach(context: Context) {
         val bottomNavigation = activity?.window?.findViewById<BottomNavigationView>(R.id.bottomNav)
         bottomNavigation?.visible()
+        super.onAttach(context)
     }
 
     private fun setupToolbar(){
@@ -61,7 +68,15 @@ class WatchlistFragment : Fragment() {
         toolbarWatchlist.apply {
             inflateMenu(R.menu.watchlist_toolbar_menu)
             setOnMenuItemClickListener {
-                Toast.makeText(requireActivity(), "AAAA", Toast.LENGTH_SHORT).show()
+                when(it.itemId){
+                    R.id.action_document -> {
+                        Toast.makeText(requireActivity(), "Notification", Toast.LENGTH_SHORT).show()
+                    }
+                    R.id.action_logout -> {
+                        Toast.makeText(requireActivity(), "Logout", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.loginFragment)
+                    }
+                }
                 true
             }
         }
@@ -80,13 +95,29 @@ class WatchlistFragment : Fragment() {
             setHasFixedSize(true)
             adapter = cryptoAdapter
         }
+
+        rvCrypto.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (!recyclerView.canScrollVertically(1)) {
+                    swipeRefresh.post {
+                        swipeRefresh.isRefreshing = true
+                    }
+
+                    viewModel.incrementPageCount()
+                    viewModel.getCrypto()
+
+                    Toast.makeText(requireActivity(), "Scroll Load", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
     private fun setupObservables(){
         viewModel.listCrypto.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Result.Loading -> {
-                    msvCryptoList.showLoadingState()
+                    if (viewModel.pageCount == 0) msvCryptoList.showLoadingState()
                 }
                 is Result.Failure -> {
                 }
@@ -98,13 +129,17 @@ class WatchlistFragment : Fragment() {
                     Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()
 
                     Log.d("DATAAA", it.data.data.toString())
+//                    Log.d("DataCrypto", listCrypto.toString())
 
-                    listCrypto = it.data.data
+                    if (viewModel.pageCount == 0){
+                        cryptoAdapter.setCryptoData(it.data.data)
+                    } else {
+                        swipeRefresh.post {
+                            swipeRefresh.isRefreshing = false
+                        }
+                        cryptoAdapter.loadMoreData(it.data.data)
+                    }
 
-                    Log.d("DataCrypto", listCrypto.toString())
-
-
-                    cryptoAdapter.setCryptoData(listCrypto)
                 }
             }
         })

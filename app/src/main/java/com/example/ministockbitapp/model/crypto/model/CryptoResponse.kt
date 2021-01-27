@@ -1,6 +1,5 @@
 package com.example.ministockbitapp.model.crypto.model
 
-import com.example.ministockbitapp.data.crypto.model.Data
 
 data class CryptoResponse(
     val message: String,
