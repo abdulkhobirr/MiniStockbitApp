@@ -43,13 +43,13 @@ class WatchlistAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val cryptoItem: CryptoData = data[position]
         val watchlistViewHolder = holder as WatchlistViewHolder
-        watchlistViewHolder.bindLectureItem(cryptoItem)
+        watchlistViewHolder.bindCryptoItem(cryptoItem)
     }
 
     open inner class ViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView)
 
     inner class WatchlistViewHolder(private val binding: ItemCryptoBinding) : ViewHolder(binding.root) {
-        fun bindLectureItem(cryptoItem: CryptoData) {
+        fun bindCryptoItem(cryptoItem: CryptoData) {
             with(itemView) {
                 binding.tvCryptoName.text = cryptoItem.coinInfo.name
                 binding.tvCryptoFullName.text = cryptoItem.coinInfo.fullName
