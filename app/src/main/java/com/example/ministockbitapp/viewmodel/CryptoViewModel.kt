@@ -4,8 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ministockbitapp.data.crypto.CryptoRepository
 import com.example.ministockbitapp.data.crypto.model.CryptoResponseItem
-import com.example.ministockbitapp.model.crypto.CryptoUseCase
-import com.example.ministockbitapp.model.crypto.model.CryptoResponse
 import com.example.ministockbitapp.utils.viewmodel.Result
 import com.example.ministockbitapp.utils.viewmodel.addTo
 import com.example.ministockbitapp.utils.viewmodel.genericErrorHandler
