@@ -32,6 +32,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", "\"https://min-api.cryptocompare.com/\"")
+            buildConfigField("String", "API_KEY", "\"Apikey 6dac52927b4edbe54e7cd32989c605575d3a203d4925ac6630297a2214310207\"")
         }
     }
     compileOptions {

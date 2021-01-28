@@ -1,6 +1,5 @@
 package com.example.ministockbitapp.utils.data
 
-import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -12,9 +11,6 @@ object ApiService {
         okhttpClient: OkHttpClient,
         baseURl: String
     ): S {
-
-        val gson = GsonBuilder()
-            .create()
 
         val retrofit = Retrofit.Builder()
             .baseUrl(baseURl)
