@@ -29,7 +29,6 @@ class BaseApplication : Application() {
             cryptoModule,
             apiModule,
             rxModule,
-            utilityModule,
             preferenceModule
         )
     }

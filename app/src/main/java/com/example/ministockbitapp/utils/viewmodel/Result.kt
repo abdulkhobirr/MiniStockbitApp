@@ -1,7 +1,5 @@
 package com.example.ministockbitapp.utils.viewmodel
 
-import com.example.ministockbitapp.utils.emptyString
-
 sealed class Result<T> {
     class Loading<T> : Result<T>()
     class Default<T> : Result<T>()

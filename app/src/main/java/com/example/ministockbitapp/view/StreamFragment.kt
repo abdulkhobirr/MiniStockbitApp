@@ -20,4 +20,9 @@ class StreamFragment : Fragment() {
         _binding = FragmentStreamBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

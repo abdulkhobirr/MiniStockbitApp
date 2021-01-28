@@ -19,4 +19,9 @@ class PortfolioFragment : Fragment() {
         _binding = FragmentPortfolioBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

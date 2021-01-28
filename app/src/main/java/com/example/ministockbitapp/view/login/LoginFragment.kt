@@ -81,4 +81,9 @@ class LoginFragment : Fragment() {
             Toast.makeText(requireActivity(), "Daftar", Toast.LENGTH_SHORT).show()
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
