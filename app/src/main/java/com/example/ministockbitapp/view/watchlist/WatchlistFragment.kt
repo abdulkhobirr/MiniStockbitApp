@@ -78,10 +78,9 @@ class WatchlistFragment : Fragment() {
                         Toast.makeText(requireActivity(), "Notification", Toast.LENGTH_SHORT).show()
                     }
                     R.id.action_logout -> {
-                        Toast.makeText(requireActivity(), "Logout", Toast.LENGTH_SHORT).show()
                         context.showWhiteAlertDialog(
-                                title = "Logout",
-                                message = "Anda yakin ingin logout ?",
+                                title = context.getString(R.string.title_logout),
+                                message = context.getString(R.string.message_confirm_logout),
                                 negativeButton = Pair(getString(android.R.string.cancel), {}),
                                 positiveButton = Pair(getString(android.R.string.ok), {
                                     loginViewModel.logout()
@@ -119,8 +118,6 @@ class WatchlistFragment : Fragment() {
 
                     viewModel.incrementPageCount()
                     viewModel.getCrypto()
-
-                    Toast.makeText(requireActivity(), "Scroll Load", Toast.LENGTH_SHORT).show()
                 }
             }
         })
@@ -139,10 +136,7 @@ class WatchlistFragment : Fragment() {
                 }
                 is Result.Success -> {
                     binding.msvCryptoList.showDefaultState()
-                    Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()
 
-                    Log.d("DATAAA", it.data.data.toString())
-//                    Log.d("DataCrypto", listCrypto.toString())
                     if (viewModel.pageCount == 0){
                         cryptoAdapter.setCryptoData(it.data.data)
                     } else {

@@ -21,24 +21,12 @@ class WatchlistAdapter (
             data.clear()
         }
         data.addAll(cryptoList)
-        Log.d("DataAdapter", data.count().toString())
         notifyDataSetChanged()
     }
 
     fun loadMoreData(moreData: List<CryptoData>){
         data.addAll(moreData)
         notifyDataSetChanged()
-    }
-
-    fun addOrUpdate(item: CryptoData) {
-        val i: Int = data.indexOf(item)
-        if (i >= 0) {
-            data[i] = item
-            notifyDataSetChanged()
-        } else {
-            data.add(item)
-            notifyDataSetChanged()
-        }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -59,9 +47,6 @@ class WatchlistAdapter (
     inner class WatchlistViewHolder(private val binding: ItemCryptoBinding) : ViewHolder(binding.root) {
         fun bindLectureItem(cryptoItem: CryptoData) {
             with(itemView) {
-                Log.d("RenderingItemNo", adapterPosition.toString() )
-                Log.d("RenderingItemName", cryptoItem.coinInfo.fullName)
-                Log.d("RenderingItemPrice", cryptoItem.display?.USD.toString())
                 binding.tvCryptoName.text = cryptoItem.coinInfo.name
                 binding.tvCryptoFullName.text = cryptoItem.coinInfo.fullName
 
