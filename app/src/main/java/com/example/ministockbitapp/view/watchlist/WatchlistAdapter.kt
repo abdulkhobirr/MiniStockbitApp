@@ -9,8 +9,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ministockbitapp.R
 import com.example.ministockbitapp.data.crypto.model.CryptoData
+import com.example.ministockbitapp.databinding.ItemCryptoBinding
 import com.example.ministockbitapp.utils.trimTrailingZero
-import kotlinx.android.synthetic.main.item_crypto.view.*
 
 class WatchlistAdapter (
     val data: MutableList<CryptoData> = mutableListOf()
@@ -42,11 +42,8 @@ class WatchlistAdapter (
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(
-            R.layout.item_crypto,
-            viewGroup, false
-        )
-        return WatchlistViewHolder(view)
+        val binding = ItemCryptoBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        return WatchlistViewHolder(binding)
     }
 
     override fun getItemCount(): Int = data.size
@@ -59,27 +56,27 @@ class WatchlistAdapter (
 
     open inner class ViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    inner class WatchlistViewHolder(itemView: View) : ViewHolder(itemView) {
+    inner class WatchlistViewHolder(private val binding: ItemCryptoBinding) : ViewHolder(binding.root) {
         fun bindLectureItem(cryptoItem: CryptoData) {
             with(itemView) {
                 Log.d("RenderingItemNo", adapterPosition.toString() )
                 Log.d("RenderingItemName", cryptoItem.coinInfo.fullName)
                 Log.d("RenderingItemPrice", cryptoItem.display?.USD.toString())
-                tvCryptoName.text = cryptoItem.coinInfo.name
-                tvCryptoFullName.text = cryptoItem.coinInfo.fullName
+                binding.tvCryptoName.text = cryptoItem.coinInfo.name
+                binding.tvCryptoFullName.text = cryptoItem.coinInfo.fullName
 
                 if (cryptoItem.RAW != null){
-                    if (cryptoItem.RAW.USD.changeDay.toFloat()<0) tvPriceChange.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_dark))
-                    else tvPriceChange.setTextColor(ContextCompat.getColor(context, R.color.green))
+                    if (cryptoItem.RAW.USD.changeDay.toFloat()<0) binding.tvPriceChange.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_dark))
+                    else binding.tvPriceChange.setTextColor(ContextCompat.getColor(context, R.color.green))
                 }
 
                 if (cryptoItem.display != null){
-                    tvCryptoPrice.text = cryptoItem.display.USD?.price
+                    binding.tvCryptoPrice.text = cryptoItem.display.USD?.price
                     val priceChange = trimTrailingZero(cryptoItem.display.USD?.changeDay)
-                    tvPriceChange.text = String.format("${priceChange}(${cryptoItem.display.USD?.changePct}%%)")
+                    binding.tvPriceChange.text = String.format("${priceChange}(${cryptoItem.display.USD?.changePct}%%)")
                 } else {
-                    tvCryptoPrice.text = context.getString(R.string.label_no_data)
-                    tvPriceChange.text = context.getString(R.string.label_no_data)
+                    binding.tvCryptoPrice.text = context.getString(R.string.label_no_data)
+                    binding.tvPriceChange.text = context.getString(R.string.label_no_data)
                 }
 
                 setOnClickListener {}

@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.ministockbitapp.view.LoginFragment"
+        android:name="com.example.ministockbitapp.view.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
     </fragment>

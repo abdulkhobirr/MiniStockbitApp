@@ -1,4 +1,4 @@
-package com.example.ministockbitapp.view
+package com.example.ministockbitapp.view.login
 
 import android.content.Context
 import android.os.Bundle
@@ -11,21 +11,24 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.ministockbitapp.R
+import com.example.ministockbitapp.databinding.FragmentLoginBinding
 import com.example.ministockbitapp.utils.gone
 import com.example.ministockbitapp.viewmodel.LoginViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
     private val loginViewModel: LoginViewModel by viewModel()
+    private var _binding : FragmentLoginBinding ? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,32 +52,32 @@ class LoginFragment : Fragment() {
     }
 
     private fun setupActions(){
-        btnLogin.setOnClickListener{
-            btnLogin.text = getString(R.string.message_logging_in)
+        binding.btnLogin.setOnClickListener{
+            binding.btnLogin.text = getString(R.string.message_logging_in)
             Handler(Looper.getMainLooper()).postDelayed({
-                btnLogin.text = getString(R.string.message_success)
-                loginViewModel.login(edtUsername.text.toString())
+                binding.btnLogin.text = getString(R.string.message_success)
+                loginViewModel.login(binding.edtUsername.text.toString())
                 findNavController().navigate(R.id.watchlistFragment)
             }, 1500)
         }
 
-        btnFacebookSignIn.setOnClickListener {
+        binding.btnFacebookSignIn.setOnClickListener {
             Toast.makeText(requireActivity(), "Facebook Sign In", Toast.LENGTH_SHORT).show()
         }
 
-        btnGoogleSignIn.setOnClickListener {
+        binding.btnGoogleSignIn.setOnClickListener {
             Toast.makeText(requireActivity(), "Google Sign In", Toast.LENGTH_SHORT).show()
         }
 
-        btnLupaPassword.setOnClickListener {
+        binding.btnLupaPassword.setOnClickListener {
             Toast.makeText(requireActivity(), "Lupa Password", Toast.LENGTH_SHORT).show()
         }
 
-        btnLoginFingerprint.setOnClickListener {
+        binding.btnLoginFingerprint.setOnClickListener {
             Toast.makeText(requireActivity(), "Fingerprint Sign In", Toast.LENGTH_SHORT).show()
         }
 
-        btnDaftarSekarang.setOnClickListener {
+        binding.btnDaftarSekarang.setOnClickListener {
             Toast.makeText(requireActivity(), "Daftar", Toast.LENGTH_SHORT).show()
         }
     }
