@@ -23,6 +23,11 @@ class WatchlistAdapter (
         notifyDataSetChanged()
     }
 
+    fun clearData(){
+        data.clear()
+        notifyDataSetChanged()
+    }
+
     fun loadMoreData(moreData: List<CryptoData>){
         data.addAll(moreData)
         notifyDataSetChanged()

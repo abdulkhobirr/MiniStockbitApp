@@ -49,6 +49,8 @@ class WatchlistFragment : Fragment() {
 
     private fun setupActions(){
         binding.swipeRefresh.setOnRefreshListener {
+            cryptoAdapter.clearData()
+            viewModel.resetPageCount()
             viewModel.getCrypto()
             binding.swipeRefresh.isRefreshing = false
         }

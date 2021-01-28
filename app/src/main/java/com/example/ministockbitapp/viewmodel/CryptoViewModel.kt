@@ -39,6 +39,10 @@ class CryptoViewModel(
         pageCount++
     }
 
+    fun resetPageCount(){
+        pageCount = 0
+    }
+
     override fun onCleared() {
         if (!disposable.isDisposed) disposable.dispose()
         super.onCleared()
