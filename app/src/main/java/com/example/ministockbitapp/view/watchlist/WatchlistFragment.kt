@@ -132,6 +132,13 @@ class WatchlistFragment : Fragment() {
                     if (viewModel.pageCount == 0) binding.msvCryptoList.showLoadingState()
                 }
                 is Result.Failure -> {
+                    binding.msvCryptoList.showErrorState(
+                            title = "Error",
+                            errorMessage = "Error Occurred",
+                            errorAction = {
+                                viewModel.getCrypto()
+                            }
+                    )
                 }
                 is Result.Empty -> {
                     binding.msvCryptoList.showEmptyState()
