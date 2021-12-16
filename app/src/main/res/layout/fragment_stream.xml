@@ -31,6 +31,9 @@
                 android:layout_height="wrap_content"
                 android:padding="7dp"
                 android:text="12"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/green"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
         </LinearLayout>
@@ -52,6 +55,9 @@
                 android:layout_height="wrap_content"
                 android:padding="7dp"
                 android:text="12"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/green"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
         </LinearLayout>
@@ -73,6 +79,9 @@
                 android:layout_height="wrap_content"
                 android:padding="7dp"
                 android:text="12"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/green"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
         </LinearLayout>

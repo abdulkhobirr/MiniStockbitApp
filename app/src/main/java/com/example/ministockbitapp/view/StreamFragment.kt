@@ -35,7 +35,19 @@ class StreamFragment : Fragment() {
 
     private fun initObservable(){
         streamViewModel.liveCrypto.observe(viewLifecycleOwner, {
-            binding.tvBtc.text = it.getTransactions("BTC").last().price.toString()
+            val btc = it.getTransactions("BTC")
+            val eth = it.getTransactions("ETH")
+            val ada = it.getTransactions("ADA")
+
+            if (btc.isNotEmpty()){
+                binding.tvBtc.text = String.format("${btc.last().price} USD")
+            }
+            if (eth.isNotEmpty()){
+                binding.tvEth.text = String.format("${eth.last().price} USD")
+            }
+            if (ada.isNotEmpty()){
+                binding.tvAda.text = String.format("${ada.last().price} USD")
+            }
             Log.d("HargaCryptoUSD", it.getTransactions("BTC").asReversed().toString())
         })
     }

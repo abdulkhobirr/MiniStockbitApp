@@ -26,7 +26,7 @@ class StreamDataStore(
                         Log.d("ScarletWebsocket", "ConnectionOpened")
                         val subscribe = Subscribe(
                             action = "SubAdd",
-                            subs = listOf("5~CCCAGG~BTC~USD")
+                            subs = listOf("5~CCCAGG~BTC~USD","5~CCCAGG~ETH~USD", "5~CCCAGG~ADA~USD")
                         )
                         gdaxService.sendSubscribe(subscribe)
                     }
