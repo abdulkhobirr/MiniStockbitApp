@@ -27,6 +27,7 @@ class BaseApplication : Application() {
     private fun getDefinedModules(): List<Module> {
         return listOf(
             cryptoModule,
+            streamModule,
             apiModule,
             rxModule,
             preferenceModule
